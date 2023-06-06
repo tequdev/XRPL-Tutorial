@@ -1,16 +1,15 @@
-import { CommandCodeEditor } from "../CommandEditor";
+import { CommandCodeEditor } from '../CommandEditor'
 
-import { useWallet } from "@/hooks/useWallet";
+import { useWallet } from '@/hooks/useWallet'
 
 /**
- * 
+ *
  */
 export const AccountInfo = () => {
   const { account } = useWallet()
-  
-  const checkCode = (tx: Record<string, unknown>) => {
-  }
-  
+
+  const checkCode = (tx: Record<string, unknown>) => {}
+
   return (
     <div>
       <CommandCodeEditor
@@ -18,10 +17,10 @@ export const AccountInfo = () => {
         json={{
           command: 'account_info',
           account: account?.address,
-          validated: true
+          validated: true,
         }}
         onSuccess={() => {}}
       />
     </div>
   )
-};
+}

@@ -1,4 +1,4 @@
-import { Client } from "xrpl"
+import { Client } from 'xrpl'
 
 const client = new Client('wss://testnet.xrpl-labs.com')
 export const useTransactionSubmit = () => {

@@ -1,41 +1,41 @@
-import { Editor, OnChange } from "@monaco-editor/react";
-import { Button, Grid } from "@nextui-org/react";
-import { useCallback, useEffect, useState } from "react";
-import { RippledError } from "xrpl";
-import { BaseResponse } from "xrpl/dist/npm/models/methods/baseMethod";
-import { BaseRequest } from "xrpl/dist/npm/models/methods/baseMethod";
+import { Editor, OnChange } from '@monaco-editor/react'
+import { Button, Grid } from '@nextui-org/react'
+import { useCallback, useEffect, useState } from 'react'
+import { RippledError } from 'xrpl'
+import { BaseResponse } from 'xrpl/dist/npm/models/methods/baseMethod'
+import { BaseRequest } from 'xrpl/dist/npm/models/methods/baseMethod'
 
-import { useCommandSender } from "@/hooks/useCommandSender";
+import { useCommandSender } from '@/hooks/useCommandSender'
 
 type Props = {
-  validCommandType: BaseRequest['command'];
-  json?: object;
-  onSuccess: (result: BaseResponse['result']) => void;
-};
+  validCommandType: BaseRequest['command']
+  json?: object
+  onSuccess: (result: BaseResponse['result']) => void
+}
 
 export const CommandCodeEditor = (props: Props) => {
-  const [command, setCommand] = useState<Record<string, unknown>>({});
-  const [errorMsg, setErrorMsg] = useState<string>();
+  const [command, setCommand] = useState<Record<string, unknown>>({})
+  const [errorMsg, setErrorMsg] = useState<string>()
   const sendCommand = useCommandSender()
   const [responseCommand, setResponseCommand] = useState<Record<string, any>>()
-  
+
   const resetJson = useCallback(() => {
     setCommand({
-      command: "",
+      command: '',
       ...props.json,
-    });
+    })
     setResponseCommand(undefined)
-  },[props.json])
-  
+  }, [props.json])
+
   useEffect(() => {
     resetJson()
   }, [resetJson])
 
   const onChange: OnChange = (value) => {
-    if (!value) return;
-    setCommand(JSON.parse(value));
-  };
-  
+    if (!value) return
+    setCommand(JSON.parse(value))
+  }
+
   const send = async () => {
     setErrorMsg(undefined)
     setResponseCommand(undefined)
@@ -50,7 +50,7 @@ export const CommandCodeEditor = (props: Props) => {
       setErrorMsg((e as RippledError).message)
     }
   }
-  
+
   const reset = () => {
     resetJson()
   }
@@ -86,4 +86,4 @@ export const CommandCodeEditor = (props: Props) => {
       </pre>
     </div>
   )
-};
+}

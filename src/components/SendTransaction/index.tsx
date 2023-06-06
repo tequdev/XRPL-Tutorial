@@ -1,12 +1,12 @@
-import { OnSubmitProps, TransactionCodeEditor } from "@/components/TransactionEditor";
-import { useWallet } from "@/hooks/useWallet";
+import { OnSubmitProps, TransactionCodeEditor } from '@/components/TransactionEditor'
+import { useWallet } from '@/hooks/useWallet'
 
 /**
  * Send Transaction
  */
 export const SendTransaction = () => {
   const { account } = useWallet()
-  
+
   const checkCode = (tx: OnSubmitProps) => {
     if (tx.meta?.TransactionResult !== 'tesSUCCESS') {
       // NG
@@ -16,17 +16,17 @@ export const SendTransaction = () => {
       alert('success')
     }
   }
-  
+
   return (
     <div>
       <TransactionCodeEditor
-        validTransactionType="AccountSet"
+        validTransactionType='AccountSet'
         json={{
-          TransactionType: "AccountSet",
-          Account: account?.address || "",
+          TransactionType: 'AccountSet',
+          Account: account?.address || '',
         }}
         onSubmit={(tx) => checkCode(tx)}
       />
     </div>
-  );
-};
+  )
+}

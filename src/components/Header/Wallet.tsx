@@ -1,10 +1,10 @@
-import { useWallet } from "@/hooks/useWallet"
+import { useWallet } from '@/hooks/useWallet'
 
 export const Wallet = () => {
-  const { account, createWallet } = useWallet();
-  
+  const { account, createWallet } = useWallet()
+
   if (!account) {
-    return <button onClick={createWallet}>Create Wallet</button>;
+    return <button onClick={createWallet}>Create Wallet</button>
   }
-  return <div>{account.address.slice(0, 8)}...</div>;
+  return <div>{account.address.slice(0, 8)}...</div>
 }
