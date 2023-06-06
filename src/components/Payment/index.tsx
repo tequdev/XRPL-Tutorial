@@ -1,4 +1,6 @@
-import { TransactionCodeEditor } from "@/components/TransactionEditor";
+import { useCallback } from "react";
+
+import { OnSubmitProps, TransactionCodeEditor } from "@/components/TransactionEditor";
 import { useWallet } from "@/hooks/useWallet";
 
 /**
@@ -7,25 +9,28 @@ import { useWallet } from "@/hooks/useWallet";
 export const Payment = () => {
   const { account } = useWallet()
   
-  const checkCode = (tx: Record<string, unknown>) => {
-    if (tx.Amount && tx.Amount === '1000000') {
+  const checkCode = useCallback((tx: OnSubmitProps) => {
+    if (tx.meta?.TransactionResult === 'tesSUCCESS'){
       // OK
-      alert('success')
+      // TODO: check if DeliveredAmount is 1 XRP
     } else {
       // NG
+      console.error(tx)
     }
-  }
+  },[])
   
   return (
     <div>
       <TransactionCodeEditor
-        validTransactionType="Payment"
+        validTransactionType='Payment'
         json={{
-          TransactionType: "Payment",
-          Account: account?.address || "",
+          TransactionType: 'Payment',
+          Account: account?.address || '',
+          Destination: '',
+          Amount: '',
         }}
-        onSubmit={(tx) => checkCode(tx as unknown as Record<string, unknown>)}
+        onSubmit={(tx) => checkCode(tx)}
       />
     </div>
-  );
+  )
 };

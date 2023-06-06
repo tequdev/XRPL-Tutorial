@@ -1,4 +1,4 @@
-import { TransactionCodeEditor } from "@/components/TransactionEditor";
+import { OnSubmitProps, TransactionCodeEditor } from "@/components/TransactionEditor";
 import { useWallet } from "@/hooks/useWallet";
 
 /**
@@ -7,12 +7,13 @@ import { useWallet } from "@/hooks/useWallet";
 export const SendTransaction = () => {
   const { account } = useWallet()
   
-  const checkCode = (tx: Record<string, unknown>) => {
-    if (tx.Amount && tx.Amount === '1000000') {
+  const checkCode = (tx: OnSubmitProps) => {
+    if (tx.meta?.TransactionResult !== 'tesSUCCESS') {
+      // NG
+      alert('error')
+    } else {
       // OK
       alert('success')
-    } else {
-      // NG
     }
   }
   
@@ -24,7 +25,7 @@ export const SendTransaction = () => {
           TransactionType: "AccountSet",
           Account: account?.address || "",
         }}
-        onSubmit={(tx) => checkCode(tx as unknown as Record<string, unknown>)}
+        onSubmit={(tx) => checkCode(tx)}
       />
     </div>
   );

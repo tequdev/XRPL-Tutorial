@@ -1,5 +1,4 @@
 {
-  "SendTx": "Send Transaction",
-  "AccountInfo": "Get Account information",
-  "SendXRP": "Send XRP"
+  "Transactions": "Transactions",
+  "PublicMethods": "Public Medhods"
 }
