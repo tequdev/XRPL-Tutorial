@@ -1,7 +1,8 @@
 {
   "index": "Get Started",
-  "Basics": "Basic",
-  "Payment": "Payment",
-  "DeFi": "DeFi",
-  "NFT": "NFT"
+  "01-Basics": "Basic",
+  "02-Payment": "Payment",
+  "03-Tokenization": "Tokenization",
+  "04-NFT": "NFT",
+  "05-DeFi": "DeFi"
 }
