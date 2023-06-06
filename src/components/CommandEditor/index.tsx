@@ -5,6 +5,7 @@ import { RippledError } from 'xrpl'
 import { BaseResponse } from 'xrpl/dist/npm/models/methods/baseMethod'
 import { BaseRequest } from 'xrpl/dist/npm/models/methods/baseMethod'
 
+import { useDarkMode } from '@/hooks/useColorMode'
 import { useCommandSender } from '@/hooks/useCommandSender'
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 }
 
 export const CommandCodeEditor = (props: Props) => {
+  const isDark = useDarkMode()
   const [command, setCommand] = useState<Record<string, unknown>>({})
   const [errorMsg, setErrorMsg] = useState<string>()
   const sendCommand = useCommandSender()
@@ -61,7 +63,7 @@ export const CommandCodeEditor = (props: Props) => {
         className='border p-1'
         height={200}
         defaultLanguage='json'
-        theme='light'
+        theme={isDark ? 'vs-dark' : 'white'}
         value={JSON.stringify(command, null, '  ')}
         onChange={onChange}
         options={{ minimap: { enabled: false }, scrollBeyondLastLine: false }}
@@ -82,7 +84,7 @@ export const CommandCodeEditor = (props: Props) => {
 
       <pre className='border p-4'>
         Result:
-        <code>{JSON.stringify(responseCommand, null, 2)}</code>
+        <code className='dark:text-gray-100'>{JSON.stringify(responseCommand, null, 2)}</code>
       </pre>
     </div>
   )

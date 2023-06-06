@@ -3,6 +3,7 @@ import { Button, Grid, Loading } from '@nextui-org/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Transaction, TransactionMetadata, TxResponse, ValidationError, XrplError } from 'xrpl'
 
+import { useDarkMode } from '@/hooks/useColorMode'
 import { useTransactionAutofill } from '@/hooks/useTransactionAutofill'
 import { useTransactionSign } from '@/hooks/useTransactionSign'
 import { useTransactionSubmit } from '@/hooks/useTransactionSubmit'
@@ -22,6 +23,7 @@ type CheckStatus = 'initial' | 'validated' | 'autofilled' | 'success'
 type LoadingStatus = 'none' | 'autofill' | 'submit'
 
 export const TransactionCodeEditor = (props: Props) => {
+  const isDark = useDarkMode()
   const [status, setStatus] = useState<CheckStatus>('initial')
   const [txjson, setTxjson] = useState<Record<string, unknown>>({})
   const validateTransaction = useTransactionValidation()
@@ -121,7 +123,7 @@ export const TransactionCodeEditor = (props: Props) => {
         className='border p-1'
         height={200}
         defaultLanguage='json'
-        theme='light'
+        theme={isDark ? 'vs-dark' : 'light'}
         value={JSON.stringify(txjson, null, '  ')}
         onChange={onChange}
         options={{ minimap: { enabled: false }, scrollBeyondLastLine: false }}
@@ -166,7 +168,7 @@ export const TransactionCodeEditor = (props: Props) => {
 
       <pre className='border p-4'>
         Transaction Result:
-        <code>{JSON.stringify(responseTx, null, 2)}</code>
+        <code className='dark:text-gray-100'>{JSON.stringify(responseTx, null, 2)}</code>
       </pre>
     </div>
   )
