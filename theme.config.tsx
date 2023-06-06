@@ -10,12 +10,12 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://discord.gg/xrpl',
   },
-  docsRepositoryBase: 'https://github.com/justmoon/dassie/tree/main/packages/app-website',
+  docsRepositoryBase: 'https://github.com/',
   navbar: {
     extraContent: <Wallet />,
   },
   footer: {
-    text: 'Made with ❤️ by a team of dassies',
+    text: 'Made with ❤️ by XRP Ledger community',
   },
 }
 
