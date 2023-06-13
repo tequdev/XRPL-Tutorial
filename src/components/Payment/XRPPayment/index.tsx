@@ -14,7 +14,6 @@ export const XRPPayment = () => {
     if (tx.meta?.TransactionResult === 'tesSUCCESS') {
       // OK
       if (tx.meta?.delivered_amount === xrpToDrops(1)) {
-        console.log('OK')
         return {
           success: true,
         }

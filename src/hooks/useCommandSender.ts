@@ -1,8 +1,9 @@
-import { Client } from 'xrpl'
 import { BaseRequest } from 'xrpl/dist/npm/models/methods/baseMethod'
 
-const client = new Client('wss://testnet.xrpl-labs.com')
+import { useXrplClient } from './useXrplClient'
+
 export const useCommandSender = () => {
+  const client = useXrplClient()
   const sendCommand = async (command: BaseRequest) => {
     await client.connect()
     const response = await client.request({

@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react'
-import { Client, Wallet } from 'xrpl'
+import { Wallet } from 'xrpl'
 
+import { useXrplClient } from '@/hooks/useXrplClient'
 import { useLocalStorage } from '@/hooks/utils'
 
 type Context = {
@@ -21,6 +22,7 @@ type Props = {
 }
 
 export const WalletContextProider = ({ children }: Props) => {
+  const client = useXrplClient()
   const [loading, setLoading] = useState(false)
   const [seed, setSeed] = useLocalStorage<string | undefined>('testnet-seed', undefined)
   const wallet = seed ? Wallet.fromSeed(seed) : undefined
@@ -28,7 +30,6 @@ export const WalletContextProider = ({ children }: Props) => {
   const createWallet = async () => {
     setLoading(true)
     const wallet = Wallet.generate()
-    const client = new Client('wss://testnet.xrpl-labs.com')
     await client.connect()
     await client.fundWallet(wallet)
     setSeed(wallet.seed!)

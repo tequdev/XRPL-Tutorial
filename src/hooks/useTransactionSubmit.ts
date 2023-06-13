@@ -1,7 +1,7 @@
-import { Client } from 'xrpl'
+import { useXrplClient } from './useXrplClient'
 
-const client = new Client('wss://testnet.xrpl-labs.com')
 export const useTransactionSubmit = () => {
+  const client = useXrplClient()
   const submit = async (txblob: string) => {
     await client.connect()
     const response = await client.submitAndWait(txblob)

@@ -1,7 +1,9 @@
-import { Client, Transaction } from 'xrpl'
+import { Transaction } from 'xrpl'
 
-const client = new Client('wss://testnet.xrpl-labs.com')
+import { useXrplClient } from './useXrplClient'
+
 export const useTransactionAutofill = () => {
+  const client = useXrplClient()
   const autofill = async (txjson: Record<string, unknown>) => {
     await client.connect()
     const tx = await client.autofill(txjson as unknown as Transaction)
