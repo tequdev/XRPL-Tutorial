@@ -9,20 +9,23 @@ import { useTransactionSign } from '@/hooks/useTransactionSign'
 import { useTransactionSubmit } from '@/hooks/useTransactionSubmit'
 import { useTransactionValidation } from '@/hooks/useTransactionValidation'
 
-export type OnSubmitProps = Omit<TxResponse['result'], 'meta'> & {
+export type OnSubmitProps<T extends Transaction = Transaction> = Omit<TxResponse<T>['result'], 'meta'> & {
   meta?: TransactionMetadata
 }
 
-type Props = {
+export type OnSubmitReturnType = { success: true } | { success: false; message: string }
+
+type Props<T extends Transaction = Transaction> = {
   validTransactionType: Transaction['TransactionType']
-  json?: object
-  onSubmit: (tx: OnSubmitProps) => void
+  json?: Transaction
+  onSubmit: (tx: OnSubmitProps<T>) => Promise<OnSubmitReturnType>
+  showResult?: boolean
 }
 
 type CheckStatus = 'initial' | 'validated' | 'autofilled' | 'success'
 type LoadingStatus = 'none' | 'autofill' | 'submit'
 
-export const TransactionCodeEditor = (props: Props) => {
+export const TransactionCodeEditor = <T extends Transaction = Transaction>(props: Props<T>) => {
   const isDark = useDarkMode()
   const [status, setStatus] = useState<CheckStatus>('initial')
   const [txjson, setTxjson] = useState<Record<string, unknown>>({})
@@ -105,7 +108,13 @@ export const TransactionCodeEditor = (props: Props) => {
       setLoading('none')
       setResponseTx(result)
       setStatus('success')
-      props.onSubmit(result as any)
+      const checkResult = await props.onSubmit(result as any)
+      if (checkResult.success) {
+        // OK
+      } else {
+        // NG
+        setErrorMsg(checkResult.message)
+      }
     } catch (e) {
       setLoading('none')
       setErrorMsg((e as XrplError).message)
@@ -165,11 +174,12 @@ export const TransactionCodeEditor = (props: Props) => {
         )}
       </Grid.Container>
       <div className='font-bold text-red-500'>{errorMsg}</div>
-
-      <pre className='border p-4'>
-        Transaction Result:
-        <code className='dark:text-gray-100'>{JSON.stringify(responseTx, null, 2)}</code>
-      </pre>
+      {props.showResult === false ? null : (
+        <pre className='border p-4'>
+          Transaction Result:
+          <code className='dark:text-gray-100'>{JSON.stringify(responseTx, null, 2)}</code>
+        </pre>
+      )}
     </div>
   )
 }

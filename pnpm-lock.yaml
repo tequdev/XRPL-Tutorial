@@ -36,8 +36,8 @@ dependencies:
     specifier: ^2.1.5
     version: 2.1.5(react@18.2.0)
   xrpl:
-    specifier: ^2.7.0
-    version: 2.7.0
+    specifier: 2.9.0-beta.0
+    version: 2.9.0-beta.0
 
 devDependencies:
   '@types/node':
@@ -1775,8 +1775,8 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /buffer@5.6.0:
-    resolution: {integrity: sha512-/gDYp/UtU0eA1ys8bOs9J6a+E/KWIY+DZ+Q2WESNUA0jFRsJOc0SNUO6xJ5SGA1xueg3NL65W6s+NY5l9cunuw==}
+  /buffer@6.0.3:
+    resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
@@ -5065,20 +5065,20 @@ packages:
       create-hash: 1.2.0
     dev: false
 
-  /ripple-binary-codec@1.4.3:
-    resolution: {integrity: sha512-P4ALjAJWBJpRApTQO+dJCrHE6mZxm7ypZot9OS0a3RCKOWTReNw0pDWfdhCGh1qXh71TeQnAk4CHdMLwR/76oQ==}
+  /ripple-binary-codec@1.5.0-beta.4:
+    resolution: {integrity: sha512-FfCqYK1YUYssgUbCUctNgV4VpFrgXZLnbNDfMv5TVJS+66kwu1vitGfYEk4YqiEyH/ViNvGKRxGxZpDNkLISVw==}
     engines: {node: '>= 10'}
     dependencies:
       assert: 2.0.0
       big-integer: 1.6.51
-      buffer: 5.6.0
+      buffer: 6.0.3
       create-hash: 1.2.0
       decimal.js: 10.4.3
       ripple-address-codec: 4.2.5
     dev: false
 
-  /ripple-keypairs@1.1.5:
-    resolution: {integrity: sha512-wLJXIBsMVazn2Yp/7oP4PvgA4Gd1HtuZLftdEJFNOLgraf82phqa2AnNK3t9f3XeQnApW1jAe/FcFFOY6QUn5w==}
+  /ripple-keypairs@1.2.0:
+    resolution: {integrity: sha512-CV3BOZGA7ijfL+W9wXoOBNqBzctjKKra/hY13ofxrBlEecXBYvR6uVjMGaIrq+D3VleME8IxQx+AgmJuV7cABg==}
     engines: {node: '>= 10'}
     dependencies:
       bn.js: 5.2.1
@@ -5857,8 +5857,8 @@ packages:
         optional: true
     dev: false
 
-  /xrpl@2.7.0:
-    resolution: {integrity: sha512-P4M/Myxn2U7wl1avAG2Y/JuJMlKw2boLNx0f9woYQJLrS68sICmAfGOYKqPSzwRPc9P7kmydNrk+737nmFW5Vw==}
+  /xrpl@2.9.0-beta.0:
+    resolution: {integrity: sha512-gqMS44eih46x3NuVBtrATWFhzZJdCcxTnXjfnaKQlPezM+hosPk9yXWKUdgTWUcKlSGq4fkkBnPwHlMuDftXhA==}
     engines: {node: '>=10.13.0'}
     dependencies:
       bignumber.js: 9.1.1
@@ -5867,8 +5867,8 @@ packages:
       https-proxy-agent: 5.0.1
       lodash: 4.17.21
       ripple-address-codec: 4.2.5
-      ripple-binary-codec: 1.4.3
-      ripple-keypairs: 1.1.5
+      ripple-binary-codec: 1.5.0-beta.4
+      ripple-keypairs: 1.2.0
       ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil

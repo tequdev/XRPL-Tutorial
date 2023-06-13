@@ -1,4 +1,4 @@
-import { OnSubmitProps, TransactionCodeEditor } from '@/components/TransactionEditor'
+import { OnSubmitProps, OnSubmitReturnType, TransactionCodeEditor } from '@/components/TransactionEditor'
 import { useWallet } from '@/hooks/useWallet'
 
 /**
@@ -7,13 +7,18 @@ import { useWallet } from '@/hooks/useWallet'
 export const SendTransaction = () => {
   const { account } = useWallet()
 
-  const checkCode = (tx: OnSubmitProps) => {
+  const checkCode = async (tx: OnSubmitProps): Promise<OnSubmitReturnType> => {
     if (tx.meta?.TransactionResult !== 'tesSUCCESS') {
       // NG
-      alert('error')
+      return {
+        success: false,
+        message: 'トランザクションが失敗しました。',
+      }
     } else {
       // OK
-      alert('success')
+      return {
+        success: true,
+      }
     }
   }
 
