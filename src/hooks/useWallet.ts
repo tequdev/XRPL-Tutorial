@@ -1,25 +1,9 @@
-import { Client, Wallet } from 'xrpl'
+import { useContext } from 'react'
 
-import { useLocalStorage } from './utils'
+import { WalletContext } from '@/context/WalletContext'
 
 export const useWallet = () => {
-  const [seed, setSeed] = useLocalStorage<string | undefined>('testnet-seed', undefined)
-  const wallet = seed ? Wallet.fromSeed(seed) : undefined
+  const { account, createWallet, loading } = useContext(WalletContext)
 
-  const createWallet = async () => {
-    const wallet = Wallet.generate()
-    const client = new Client('wss://testnet.xrpl-labs.com')
-    await client.connect()
-    await client.fundWallet(wallet)
-    setSeed(wallet.seed!)
-  }
-
-  const account = wallet
-    ? {
-        seed: wallet.seed!,
-        address: wallet.address,
-      }
-    : undefined
-
-  return { account, createWallet }
+  return { account, createWallet, loading }
 }
