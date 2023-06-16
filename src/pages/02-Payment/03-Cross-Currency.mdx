@@ -1,0 +1,35 @@
+import { SetupTestToken } from 'src/components/SetupTestToken'
+import { CrossCurrency } from 'src/components/Payment/CrossCurrency'
+import { LinkCard } from 'src/components/commons'
+
+# Cross Currency
+
+このページでは、クロスカレンシー送金の方法を学びましょう。
+クロスカレンシー送金を行うことで自身はXRPを送金しているが受け取り側はUSDで受け取るようなことが可能になります。
+①XRPを送信し、トークンで受け取り、②トークンを送信し、XRPで受け取り、③トークンAを送信し、トークンBで受け取りが可能です。
+
+## 事前準備
+
+トークンを保有するには事前にテスト用トークンのトラストラインを設定します。
+このアカウント/トークンはテスト用にコミュニティから提供されており、トラストライン設定時にトークンを送信してくれます。
+
+<SetupTestToken />
+
+## トークンの送金
+
+<LinkCard href='https://xrpl.org/ja/payment.html' />
+
+クロスカレンシー送金ではXRP送金やトークン送金と同様にPaymentトランザクションを使用します。
+
+XRP送金やトークン送金では送金側と受取側の通貨が同一だったため、`Amount`フィールドのみを使用していましたが、クロスカレンシー送金では送金側の通貨、総金額を指定するために`SendMax`フィールドを使用し、受取側の通貨、金額を指定するために`Amount`フィールドを使用します。
+
+`Amount`で指定した金額分を`SendMax`で指定した金額を上限にDEXを使って自動変換し、送金します。
+
+交換レートや流動性が足りない場合などで`SendMax`分の金額で`Amount`分を調達できない場合はトランザクションは失敗し、自動変換や送金は行われません。
+
+XRPを送金側通貨として使用し、好きなアカウントへ10USDを送信してみましょう。
+
+次のアカウントを使っても良いでしょう。
+`rDT1fLH3kLhEFFX9Z1AJtfTUApnAoEEaEC`
+
+<CrossCurrency />
