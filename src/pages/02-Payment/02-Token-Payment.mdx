@@ -1,0 +1,28 @@
+import { SetupTestToken } from 'src/components/SetupTestToken'
+import { TokenPayment } from 'src/components/Payment/TokenPayment'
+import { LinkCard } from 'src/components/commons'
+
+# Token Payment
+
+このページでは、トークンの送金方法を学びましょう。
+XRPの送金と同様にPaymentトランザクションを使用しトークンを送信することができます。
+
+## 事前準備
+
+トークンを保有するには事前にテスト用トークンのトラストラインを設定します。
+このアカウント/トークンはテスト用にコミュニティから提供されており、トラストライン設定時にトークンを送信してくれます。
+
+<SetupTestToken />
+
+## トークンの送金
+
+<LinkCard href='https://xrpl.org/ja/payment.html' />
+
+トークンを送信するPaymentトランザクションでは、`Amount`フィールドに送信するトークンの発行者(`issuer`)、通貨コード(`currency`)、送金量(`value`)を入力します。
+
+好きなアカウントへ10USDを送信してみましょう。
+
+次のアカウントを使っても良いでしょう。
+`rDT1fLH3kLhEFFX9Z1AJtfTUApnAoEEaEC`
+
+<TokenPayment/ >
