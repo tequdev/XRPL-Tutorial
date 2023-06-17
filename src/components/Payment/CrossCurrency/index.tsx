@@ -15,16 +15,16 @@ export const CrossCurrency = () => {
       // OK
       // TODO: check if DeliveredAmount is 10 USD
       const delivered_amount = tx.meta?.delivered_amount
-      if (typeof tx.Amount !== 'string') {
+      if (typeof tx.Amount !== 'object') {
         return {
           success: false,
-          message: 'AmountにはXRP(drop)の額を指定しましょう。',
+          message: 'AmountにはUSDの額を指定しましょう。',
         }
       }
-      if (typeof tx.SendMax !== 'object') {
+      if (typeof tx.SendMax !== 'string') {
         return {
           success: false,
-          message: 'SendMaxにはUSDの額を指定しましょう。',
+          message: 'SendMaxにはXRP(drop)の額を指定しましょう。',
         }
       }
       if (
