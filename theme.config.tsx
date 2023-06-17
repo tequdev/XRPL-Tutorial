@@ -1,9 +1,10 @@
 import { DocsThemeConfig } from 'nextra-theme-docs/.'
 
+import { Logo } from '@/components/Header/Logo'
 import { Wallet } from '@/components/Header/Wallet'
 
 const config: DocsThemeConfig = {
-  logo: <span>XRPL Tutorials</span>,
+  logo: <Logo />,
   project: {
     link: 'https://github.com',
   },
