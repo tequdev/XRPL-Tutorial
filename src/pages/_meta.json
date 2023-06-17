@@ -1,8 +1,14 @@
 {
-  "index": "Get Started",
-  "01-Basics": "Basic",
+  "index": "はじめに",
+  "01-Basics": "基本",
   "02-Payment": "Payment",
-  "03-Tokenization": "Tokenization",
-  "04-NFT": "NFT",
-  "05-DeFi": "DeFi"
+  "03-Tokenization": {
+    "display": "hidden"
+  },
+  "04-NFT": {
+    "display": "hidden"
+  },
+  "05-DeFi": {
+    "display": "hidden"
+  }
 }
