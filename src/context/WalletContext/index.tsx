@@ -1,3 +1,4 @@
+import { track } from '@vercel/analytics/react'
 import { createContext, useState } from 'react'
 import { Wallet } from 'xrpl'
 
@@ -34,6 +35,7 @@ export const WalletContextProider = ({ children }: Props) => {
     await client.fundWallet(wallet)
     setSeed(wallet.seed!)
     setLoading(false)
+    track('create-wallet')
   }
 
   const account = wallet

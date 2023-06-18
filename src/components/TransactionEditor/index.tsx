@@ -1,5 +1,6 @@
 import { Editor, OnChange } from '@monaco-editor/react'
 import { Button, Grid, Loading } from '@nextui-org/react'
+import { track } from '@vercel/analytics/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Transaction, TransactionMetadata, TxResponse, ValidationError, XrplError } from 'xrpl'
 
@@ -75,6 +76,7 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
     }
     try {
       validateTransaction(txjson)
+      track('transaction/validate', { TransactionType: txjson.TransactionType as string })
       setStatus('validated')
     } catch (e) {
       console.error(e)
@@ -88,6 +90,7 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
     try {
       setLoading('autofill')
       const tx = await autofillTransaction(txjson)
+      track('transaction/autofill', { TransactionType: txjson.TransactionType as string })
       setLoading('none')
       setTxjson(tx as unknown as Record<string, unknown>)
       setStatus('autofilled')
@@ -105,6 +108,7 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
       setLoading('submit')
       const txBlob = signTransaction(txjson)
       const result = await submitTransaction(txBlob)
+      track('transaction/submit', { TransactionType: txjson.TransactionType as string })
       setLoading('none')
       setResponseTx(result)
       setStatus('success')
