@@ -4,6 +4,11 @@ import { Logo } from '@/components/Header/Logo'
 import { Wallet } from '@/components/Header/Wallet'
 
 const config: DocsThemeConfig = {
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s – XRPL Tutorial',
+    }
+  },
   logo: <Logo />,
   project: {
     link: 'https://github.com/develoQ/XRPL-Tutorial',
