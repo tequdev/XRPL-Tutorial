@@ -42,6 +42,10 @@ In particular, untranslated contents are just import of file in other languages.
 
 Add the language to next.config.js.
 
+Language tag cannot be include for underscore. (ex. ❌`en_US` ⭕️`en-US`)
+
+<!-- https://github.com/shuding/nextra/blob/main/packages/nextra/__test__/utils.test.ts -->
+
 ```js
 module.exports = withNextra({
   i18n: {
