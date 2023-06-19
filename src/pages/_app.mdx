@@ -1,6 +1,5 @@
 import { NextUIProvider } from '@nextui-org/react'
 import { Analytics } from '@vercel/analytics/react'
-import { AppProps } from 'next/app'
 
 import { WalletContextProider } from '@/context/WalletContext'
 import { XrplClientContextProider } from '@/context/XrplClientContext'
@@ -8,7 +7,7 @@ import { XrplClientContextProider } from '@/context/XrplClientContext'
 import 'nextra-theme-docs/style.css'
 import '../../styles/global.css'
 
-export default function Nextra({ Component, pageProps }: AppProps) {
+export default function Nextra({ Component, pageProps }) {
   return (
     <NextUIProvider>
       <XrplClientContextProider>
