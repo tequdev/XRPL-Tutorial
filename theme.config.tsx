@@ -43,6 +43,10 @@ const config: DocsThemeConfig = {
   footer: {
     text: 'Made with ❤️ by XRP Ledger community',
   },
+  i18n: [
+    { locale: 'en', text: 'English' },
+    { locale: 'ja', text: '日本語' },
+  ],
 }
 
 export default config
