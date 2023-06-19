@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useCallback } from "react"
 
 type Key = string
-type Locale = 'en' | 'ja'
+type Locale = 'en' | 'ja' | 'es-ES'
 type Text = string
 type Props = Record<Key, Record<Locale, Text>>
 

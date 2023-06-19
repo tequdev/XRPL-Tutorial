@@ -11,14 +11,17 @@ const translations = {
   TransactionFailed: {
     ja: 'トランザクションが失敗しました。',
     en: 'Transaction failed.',
+    'es-ES': 'Transacción fallida.',
   },
   FaucetFailed: {
     ja: 'トークンの付与に失敗しました。再試行してください。',
     en: 'Failed to faucet token. Please try again.',
+    'es-ES': 'Fallo a la hora de generar el faucet del token. Por favor, inténtalo de nuevo.'
   },
   USD_Balance: {
     ja: 'USD残高',
     en: 'USD Balance',
+    'es-ES': 'Balance USD',
   },
 } as const
 

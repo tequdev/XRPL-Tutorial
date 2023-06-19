@@ -9,18 +9,22 @@ const translations = {
   Specify_USD_Amount: {
     ja: 'AmountにはUSDの額を指定しましょう。',
     en: 'Specify the amount of USD in Amount.',
+    'es-ES': 'Especifica la cantidad de USD en Amount.',
   },
   Specify_XRP_SendMax: {
     ja: 'SendMaxにはXRP(drop)の額を指定しましょう。',
     en: 'Specify the amount of XRP(drop) in SendMax.',
+    'es-ES': 'Especifica la cantidad de XRP(drop) en SendMax.',
   },
   Invalid_DeliveredAmount: {
     ja: '送金額が一致しません。',
     en: 'The amount of USD sent does not match.',
+    'es-ES': 'La cantidad de USD enviado no coincide.',
   },
   TransactionFailed: {
     ja: 'トランザクションが失敗しました。',
     en: 'Transaction failed.',
+    'es-ES': 'Transacción fallida.',
   },
 } as const
 
