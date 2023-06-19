@@ -34,7 +34,7 @@ const config: DocsThemeConfig = {
     link: 'https://github.com/develoQ/XRPL-Tutorial',
   },
   chat: {
-    link: 'https://discord.gg/xrpl',
+    link: 'https://xrpldevs.org/',
   },
   docsRepositoryBase: 'https://github.com/develoQ/xrpl-tutorial/blob/main/',
   navbar: {
