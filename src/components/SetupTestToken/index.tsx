@@ -2,14 +2,32 @@ import { useEffect, useState } from 'react'
 
 import { OnSubmitProps, OnSubmitReturnType, TransactionCodeEditor } from '@/components/TransactionEditor'
 import { useAccountBalances } from '@/hooks/useAccountBalances'
+import { useLocale } from '@/hooks/useLocale'
 import { useWallet } from '@/hooks/useWallet'
 
 const issuer = 'rg2MAgwqwmV9TgMexVBpRDK89vMyJkpbC'
+
+const translations = {
+  TransactionFailed: {
+    ja: 'トランザクションが失敗しました。',
+    en: 'Transaction failed.',
+  },
+  FaucetFailed: {
+    ja: 'トークンの付与に失敗しました。再試行してください。',
+    en: 'Failed to faucet token. Please try again.',
+  },
+  USD_Balance: {
+    ja: 'USD残高',
+    en: 'USD Balance',
+  },
+} as const
+
 /**
  * SetupTestToken
  */
 export const SetupTestToken = () => {
   const { account } = useWallet()
+  const translate = useLocale(translations)
   const getBalances = useAccountBalances()
   const [balance, setBalance] =
     useState<(ReturnType<typeof getBalances> extends Promise<infer T> ? T : ReturnType<typeof getBalances>)[number]>()
@@ -30,7 +48,7 @@ export const SetupTestToken = () => {
       alert('error')
       return {
         success: false,
-        message: 'トランザクションが失敗しました。',
+        message: translate('TransactionFailed'),
       }
     } else {
       // OK
@@ -52,7 +70,7 @@ export const SetupTestToken = () => {
       }
       return {
         success: false,
-        message: 'トークンの付与に失敗しました。再試行してください。',
+        message: translate('FaucetFailed'),
       }
     }
   }
@@ -77,7 +95,9 @@ export const SetupTestToken = () => {
           showResult={false}
         />
       ) : (
-        <div className='text-lg font-semibold'>USD残高 : {balance?.value}</div>
+        <div className='text-lg font-semibold'>
+          {translate('USD_Balance')} : {balance?.value}
+        </div>
       )}
     </div>
   )
