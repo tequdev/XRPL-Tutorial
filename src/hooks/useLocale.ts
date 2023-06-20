@@ -2,9 +2,10 @@ import { useRouter } from "next/router"
 import { useCallback } from "react"
 
 type Key = string
-type Locale = 'en' | 'ja' | 'es-ES'
+type DefaultLocale = 'en'
+type Locale = DefaultLocale | 'ja' | 'es-ES'
 type Text = string
-type Props = Record<Key, Record<Partial<Locale> | 'en', Text>>
+type Props = Record<Key, { [key in Locale]?: Text } & { [key in DefaultLocale]: Text }>
 
 export const useLocale = <T extends Props>(t: T) => {
   const { locale, defaultLocale } = useRouter()
@@ -12,8 +13,8 @@ export const useLocale = <T extends Props>(t: T) => {
   const currentLocale = (locale || defaultLocale) as Locale
 
   const translate = useCallback((key: keyof T) => {
-    return t[key][currentLocale]
-  }, [currentLocale, t])
+    return t[key][currentLocale] || t[key][defaultLocale as DefaultLocale]
+  }, [currentLocale, defaultLocale, t])
 
   return translate
 }
