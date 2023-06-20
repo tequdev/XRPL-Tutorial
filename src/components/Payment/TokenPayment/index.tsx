@@ -9,10 +9,12 @@ const translations = {
   Invalid_DeliveredAmount: {
     ja: '送金額が一致しません。',
     en: 'The amount of USD sent does not match.',
+    'es-ES': 'La cantidad de USD no coincide.',
   },
   TransactionFailed: {
     ja: 'トランザクションが失敗しました。',
     en: 'Transaction failed.',
+    'es-ES': 'Transacción fallida.',
   },
 } as const
 

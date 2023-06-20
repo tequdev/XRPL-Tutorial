@@ -3,7 +3,7 @@ import { useCallback } from "react"
 
 type Key = string
 type DefaultLocale = 'en'
-type Locale = DefaultLocale | 'ja'
+type Locale = DefaultLocale | 'ja' | 'es-ES'
 type Text = string
 type Props = Record<Key, { [key in Locale]?: Text } & { [key in DefaultLocale]: Text }>
 
