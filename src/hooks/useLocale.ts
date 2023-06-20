@@ -4,7 +4,7 @@ import { useCallback } from "react"
 type Key = string
 type Locale = 'en' | 'ja' | 'es-ES'
 type Text = string
-type Props = Record<Key, Record<Locale, Text>>
+type Props = Record<Key, Record<Partial<Locale> | 'en', Text>>
 
 export const useLocale = <T extends Props>(t: T) => {
   const { locale, defaultLocale } = useRouter()
