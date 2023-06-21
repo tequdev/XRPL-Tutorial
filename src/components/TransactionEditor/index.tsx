@@ -144,7 +144,7 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
       <Grid.Container gap={1}>
         <Grid>
           <Button size='sm' onPress={validate} disabled={isValidated}>
-            {!isValidated ? 'validate' : 'validated'}
+            {!isValidated ? 'Validate' : 'Validated'}
           </Button>
         </Grid>
         <Grid>
