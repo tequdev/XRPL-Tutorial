@@ -1,3 +1,57 @@
-import AccountInfo from './AccountInfo.en.mdx'
+import { AccountInfo } from 'src/components/AccountInfo'
+import { LinkCard } from 'src/components/commons'
 
-<AccountInfo />
+# Conseguir información de la cuenta
+
+El comando `account_info` puede ser utilizado par aconseguir información de la cuenta (Objeto `AccountRoot`).
+
+<LinkCard href='https://xrpl.org/account_info.html' />
+
+Este comando te permite conseguir los balances de la cuenta, las opciones de la cuenta, y el número de objetos en los que las reservas de la cuenta están basados.
+
+<AccountInfo/ >
+
+## Ejemplo
+
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+<Tabs items={['javascript', 'typescript']}>
+  <Tab>
+
+```js copy
+const { Client } = require('xrpl')
+
+const client = new Client('wss://testnet.xrpl-labs.com')
+
+client.connect().then(() => {
+  client
+    .request({
+      command: 'account_info',
+      account: 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59',
+      validated: true,
+    })
+    .then((response) => {
+      console.log(response)
+    })
+})
+```
+
+  </Tab>
+  <Tab>
+
+```ts copy
+import { Client } from 'xrpl'
+
+const client = new Client('wss://testnet.xrpl-labs.com')
+
+await client.connect()
+const response = await client.request({
+  command: 'account_info',
+  account: 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59',
+  validated: true,
+})
+console.log(response)
+```
+
+  </Tab>
+</Tabs>

@@ -1,3 +1,73 @@
-import SendTx from './SendTx.en.mdx'
+import { SendTransaction } from 'src/components/SendTransaction'
+import { LinkCard } from 'src/components/commons'
 
-<SendTx />
+# Enviar Transacción
+
+Enviemos una transacción.
+
+Cuando envías una transacción, debes especificar el campo `TransactionType`, el cual indica qué tipo de transacción es, y el campo `Account`, el cual indica la cuenta con la cual la transacción es enviada.
+Algunos campos, como el campo `Fee`, el cual indica la comisión por transacción que va a ser consumida, y el campo `Sequence`,  el cual identifica el valor único de la transacción para la cuenta, puede ser introducida automáticamente.
+
+Intenta enviar la transacción más simple aquí.
+
+La transacción `AccountSet` es una transacción para cambiar las opciones de la cuenta.
+Si una transacción es enviada sin especificar las opciones de la cuenta, las opciones de la cuenta no se cambiarán, solo la comisión por transacción será consumida.
+
+<LinkCard href='https://xrpl.org/accountset.html' />
+
+Primero, utiliza el botón de validar para comprobar que la información del JSON para la transacción es correcta.
+Después utiliza el botón de autorellenar para autorellenar el campo, y para terminar utiliza el botón para enviar la transacción.
+
+
+<SendTransaction/ >
+
+## Example
+
+import { Tab, Tabs } from 'nextra-theme-docs'
+
+<Tabs items={['javascript', 'typescript']}>
+  <Tab>
+
+```js copy
+const { Client, Wallet } = require('xrpl')
+
+const client = new Client('wss://testnet.xrpl-labs.com')
+const wallet = Wallet.fromSeed('<seed>')
+
+client.connect().then(() => {
+  client
+    .submitAndWait(
+      {
+        TransactionType: 'AccountSet',
+        Account: 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59',
+      },
+      { wallet }
+    )
+    .then((response) => {
+      console.log(response)
+    })
+})
+```
+
+  </Tab>
+  <Tab>
+
+```ts copy
+import { Client } from 'xrpl'
+
+const client = new Client('wss://testnet.xrpl-labs.com')
+const wallet = Wallet.fromSeed('<seed>')
+
+await client.connect()
+const response = await client.submitAndWait(
+  {
+    TransactionType: 'AccountSet',
+    Account: 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59',
+  },
+  { wallet }
+)
+console.log(response)
+```
+
+  </Tab>
+</Tabs>
