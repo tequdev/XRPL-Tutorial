@@ -18,7 +18,6 @@ interface P {
 const fetcher: Fetcher<Meta, string> = async (url) => {
   const res = await fetch(url)
   const data = await res.json()
-  console.log(data)
   return data
 }
 
