@@ -16,16 +16,23 @@ const config: DocsThemeConfig = {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { frontMatter } = useConfig()
     const url = 'https://xrpl-tutorial.vercel.app' + (defaultLocale === locale ? asPath : `/${locale}${asPath}`)
+    
 
     return (
       <>
         <meta property='og:url' content={url} />
         <meta property='og:title' content={frontMatter.title || 'XRPL Tutorial'} />
-        <meta
-          property='og:description'
-          content={frontMatter.description || 'XRPレジャーをWebサイト上で学びましょう！'}
-        />
+        <meta property='og:description' content={frontMatter.description || 'Learn about XRP Ledger on the website!'} />
         <meta property='og:image' content='https://xrpl-tutorial.vercel.app/ogp.png' />
+        {/* twitter */}
+        <meta property='twitter:card' content='summary_large_image' />
+        <meta property='twitter:url' content={url} />
+        <meta property='twitter:title' content={frontMatter.title || 'XRPL Tutorial'} />
+        <meta
+          property='twitter:description'
+          content={frontMatter.description || 'Learn about XRP Ledger on the website!'}
+        />
+        <meta property='twitter:image' content='https://xrpl-tutorial.vercel.app/ogp.png' />
       </>
     )
   },
