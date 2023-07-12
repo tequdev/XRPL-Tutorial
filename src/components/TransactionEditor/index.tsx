@@ -23,7 +23,7 @@ type Props<T extends Transaction = Transaction> = {
   showResult?: boolean
 }
 
-type CheckStatus = 'initial' | 'validated' | 'autofilled' | 'signed' | 'success'
+type CheckStatus = 'initial' | 'validated' | 'autofilled' | 'signed' | 'success' | 'error'
 type LoadingStatus = 'none' | 'autofill' | 'submit'
 
 export const TransactionCodeEditor = <T extends Transaction = Transaction>(props: Props<T>) => {
@@ -46,6 +46,7 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
     })
     setResponseTx(undefined)
     setStatus('initial')
+    setErrorMsg(undefined)
   }, [props.json])
 
   useEffect(() => {
@@ -58,10 +59,12 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
     setStatus('initial')
   }
 
-  const isValidated = status !== 'initial'
-  const isAutofilled = status === 'autofilled' || status === 'signed' || status === 'success'
-  const isSigned = status === 'signed' || status === 'success'
   const isSuccessed = status === 'success'
+  const isErrored = status === 'error'
+  const isSubmitted = isSuccessed || isErrored
+  const isValidated = status !== 'initial'
+  const isAutofilled = status === 'autofilled' || status === 'signed' || isSubmitted
+  const isSigned = status === 'signed' || isSubmitted
 
   const validate = () => {
     setResponseTx(undefined)
@@ -125,18 +128,19 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
       track('transaction/submit', { TransactionType: txjson.TransactionType as string })
       setLoading('none')
       setResponseTx(result)
-      setStatus('success')
       const checkResult = await props.onSubmit(result as any)
       if (checkResult.success) {
         // OK
+        setStatus('success')
       } else {
         // NG
+        setStatus('error')
         setErrorMsg(checkResult.message)
       }
     } catch (e) {
       setLoading('none')
       setErrorMsg((e as XrplError).message)
-      setStatus('initial')
+      setStatus('error')
     }
   }
 
@@ -176,11 +180,11 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
         </Grid>
         <Grid>
           <Button size='sm' onPress={sign} disabled={isSigned}>
-            {!isSigned? 'Sign': 'Signed'}
+            {!isSigned ? 'Sign' : 'Signed'}
           </Button>
         </Grid>
         <Grid>
-          <Button size='sm' onPress={submit} disabled={!isSigned || isSuccessed}>
+          <Button size='sm' onPress={submit} disabled={!isSigned || isSubmitted}>
             {loading !== 'submit' ? (
               'Submit'
             ) : (
@@ -188,7 +192,7 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
             )}
           </Button>
         </Grid>
-        {isSuccessed && (
+        {isSubmitted && (
           <Grid>
             <Button size='sm' onPress={reset}>
               Reset
@@ -196,6 +200,7 @@ export const TransactionCodeEditor = <T extends Transaction = Transaction>(props
           </Grid>
         )}
       </Grid.Container>
+      <div className='font-bold text-blue-500'>{isSuccessed ? 'Success!' : ''}</div>
       <div className='font-bold text-red-500'>{errorMsg}</div>
       {props.showResult === false ? null : (
         <pre className='border p-4'>
