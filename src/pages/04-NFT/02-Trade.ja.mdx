@@ -1,0 +1,76 @@
+import { NFTOfferCreate } from 'src/components/NFT/NFTokenCreateOffer'
+import { AccountNfts } from 'src/components/NFT/AccountNfts'
+import { SetupNFTOffer } from 'src/components/NFT/SetupNFTOffer'
+import { NFTSellOffers } from 'src/components/NFT/NFTSellOffers'
+import { NFTOfferAccept } from 'src/components/NFT/NFTokenAcceptOffer'
+import { LinkCard } from 'src/components/commons'
+
+# NFTの取引
+
+このページでは、NFTの取引の方法を学びましょう！。
+NFTokenCreateOfferトランザクションおよび NFTokenAcceptOfferトランザクションを使用することでNFTの取引をすることができます。
+
+<LinkCard href='https://xrpl.org/ja/nftokencreateoffer.html' />
+
+<LinkCard href='https://xrpl.org/ja/nftokenacceptoffer.html' />
+
+NFTokenCreateOfferトランザクションは、NFTの購入またはNFTの売却の注文を作成します。
+
+NFTokenAcceptOfferトランザクションは、既に他のアカウントにより作成されている購入または売却の注文を受け入れ、NFTの取引を完了させます。
+
+### NFTokenCreateOfferトランザクション
+
+NFTokenCreateOfferトランザクションでは、次のフィールドを指定することができます。
+
+- `NFTokenID`: NFTのIDを指定します。
+- `Owner`: NFTの所有者のアドレスを指定します。購入オファーの場合のみ指定します。
+- `Amount`: NFTの購入希望額または売却提示額を指定します。0を指定した場合、実質的には譲渡となります。
+- `Expiration`: オファーが無効となる時間を指定することが可能です。
+- `Destination`: 購入者または売却者のアドレスを指定します。指定したアドレス以外はAcceptできません。
+- `Flags`: 売却オファーを作成する場合、`tfSellNFToken`(1)を指定します。
+
+保有するNFTの売却オファーを作成してみましょう。
+
+まずはアカウントが保有するNFTを取得します。
+
+`account_nfts`コマンドで取得することができます。
+
+<AccountNfts/ >
+
+NFTを1つ選び、そのNFTのIDを指定して売却オファーを作成してみましょう。
+
+<NFTOfferCreate/ >
+
+### NFTokenAcceptOfferトランザクション
+
+※ここではブローカーモードについては取り扱いません。ブローカーモードについてはドキュメントを参照してください。
+
+NFTokenAcceptOfferトランザクションでは、次のフィールドを指定することができます。
+
+- `NFTokenSellOffer`: 売却オファーを承認する場合、つまりアカウントが他者のNFTを購入する場合にその売却オファーのIDを指定します。
+- `NFTokenBuyOffer`: 購入オファーを承認する場合、つまりアカウントが自身のNFTを売却する場合にその購入オファーのIDを指定します。
+
+NFTokenAcceptOfferトランザクションを試してみましょう。
+
+#### テスト用のNFTと売却オファーを作成
+
+まずは承認用のNFTと売却オファーを別アカウントで作成しましょう。
+<SetupNFTOffer/ >
+
+
+#### オファーIDの取得
+
+次に作成したNFTのオファーのIDを取得しましょう。
+
+nft_sell_offersコマンドを使うことで指定したNFT IDの売却オファーを取得することができます。
+
+同様に購入オファーを取得するためのnft_buy_offersコマンドも存在しますが、今回は使用しません。
+
+<NFTSellOffers/ >
+
+
+#### NFTokenAcceptOfferトランザクションを作成
+
+取得したNFTのオファー情報を使ってNFTokenAcceptOfferトランザクションを作成してみましょう。
+
+<NFTOfferAccept/ >

@@ -33,7 +33,7 @@ export const Wallet = () => {
       <button
         type='button'
         className='rounded-md px-4 py-2 shadow duration-150 ease-in-out hover:bg-slate-300'
-        onClick={createWallet}
+        onClick={() => createWallet()}
       >
         Create Wallet
       </button>

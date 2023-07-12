@@ -1,0 +1,25 @@
+import { NFTBurn } from 'src/components/NFT/NFTokenBurn'
+import { AccountNfts } from 'src/components/NFT/AccountNfts'
+import { LinkCard } from 'src/components/commons'
+
+# NFTのバーン
+
+このページでは、NFTのバーンの方法を学びましょう！。
+NFTokenBurnトランザクションを使用することでNFTをバーンすることができます。
+
+<LinkCard href='https://xrpl.org/ja/nftokenburn.html' />
+
+NFTokenBurnトランザクションでは、次のフィールドを指定することができます。
+
+- `NFTokenID`: (必須)バーンするNFTのIDを指定します。
+- `Owner`: 自身が発行した`tfBurnable`なNFTをバーンする場合に現在のNFTの所有者アカウントを指定します。
+
+自身が保有するNFTをバーンしてみましょう。
+
+まずは、自身の保有するNFTを確認します。
+
+<AccountNfts/ >
+
+NFTを1つ選び、そのNFTのIDを指定してバーンしましょう。
+
+<NFTBurn/ >

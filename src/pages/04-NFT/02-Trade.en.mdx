@@ -1,0 +1,76 @@
+import { NFTOfferCreate } from 'src/components/NFT/NFTokenCreateOffer'
+import { AccountNfts } from 'src/components/NFT/AccountNfts'
+import { SetupNFTOffer } from 'src/components/NFT/SetupNFTOffer'
+import { NFTSellOffers } from 'src/components/NFT/NFTSellOffers'
+import { NFTOfferAccept } from 'src/components/NFT/NFTokenAcceptOffer'
+import { LinkCard } from 'src/components/commons'
+
+# Trade NFT
+
+On this page, learn how to trade NFTs!
+You can use the NFTokenCreateOffer transaction and the NFTokenAcceptOffer transaction to trade NFTs.
+
+<LinkCard href='https://xrpl.org/nftokencreateoffer.html' />
+
+<LinkCard href='https://xrpl.org/nftokenacceptoffer.html' />
+
+The NFTokenCreateOffer transaction creates an order to buy or sell an NFT.
+
+The NFTokenAcceptOffer transaction accepts a buy or sell order that has already been created by another account and completes the NFT trade.。
+
+### NFTokenCreateOffer transaction
+
+The following fields can be specified in the NFTokenCreateOffer transaction:
+
+- `NFTokenID`: Specify the NFT ID.
+- `Owner`: Specifies the address of the NFT owner. Specify only for buy offer.
+- `Amount`: Specify the amount you wish to buy or sell the NFT for; if 0 is specified, it is in fact a transfer.
+- `Expiration`: Specify the time at which the offer becomes invalid.
+- `Destination`: Specify the address of the buyer or seller. Only the specified address can be Accepted.
+- `Flags`: To create a sell offer, specify `tfSellNFToken`(1).
+
+Let's create an offer to sell your NFT in holding.
+
+First, get the NFT held by the account.
+
+It can be obtained with the `account_nfts` command.
+
+<AccountNfts/ >
+
+Choose one NFT and create a sell offer specifying the NFT's ID.
+
+<NFTOfferCreate/ >
+
+### NFTokenAcceptOffer transaction
+
+note: Broker mode is not covered here. Please refer to the documentation for broker mode.
+
+The following fields can be specified in the NFTokenAcceptOffer transaction:
+
+- `NFTokenSellOffer`: When approving a sell offer, that is, when an account buys another account's NFTs, specify the ID of that sell offer.
+- `NFTokenBuyOffer`: When approving a buy offer, that is, when an account sells its own NFTs, it specifies the ID of the buy offer.
+
+Try the NFTokenAcceptOffer transaction.
+
+#### Create NFT and sale offer for testing
+
+First, create an NFT for approval and a sell offer in a separate account.
+
+<SetupNFTOffer/ >
+
+#### Get Offer ID
+
+Next, let's get the ID of the NFT offer you have created.
+
+You can use the nft_sell_offers command to get the sell offers for a given NFT ID.
+
+Similarly, the nft_buy_offers command exists to retrieve buy offers, but is not used in this case.
+
+<NFTSellOffers/ >
+
+
+#### Create NFTokenAcceptOffer transaction
+
+Let's create an NFTokenAcceptOffer transaction using the obtained NFT offer information.
+
+<NFTOfferAccept/ >

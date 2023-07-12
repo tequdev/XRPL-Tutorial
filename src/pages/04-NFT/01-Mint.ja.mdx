@@ -1,0 +1,29 @@
+import { NFTMint } from 'src/components/NFT/NFTokenMint'
+import { LinkCard } from 'src/components/commons'
+
+# NFTのミント
+
+このページでは、NFTのミントの方法を学びましょう！。
+NFTokenMintトランザクションを使用することでNFTをミントすることができます。
+
+<LinkCard href='https://xrpl.org/ja/nftokenmint.html' />
+
+NFTokenMintトランザクションでは、次のフィールドを指定することができます。
+
+- `NFTokenTaxon`: (必須)コレクションを識別するための番号です。0~4294967295(0xFFFFFFFF)の値を指定します。
+- `Flags`: NFTの種類を指定することができます。詳しくは後述します。
+- `TransferFee`: 二次流通取引時の手数料(ロイヤリティ)を指定します。0~50000の値が指定でき、0.00%~50.00%に対応します。
+- `URL`: 256バイトを上限に任意のデータを格納することができます。16進数で指定します。
+
+#### Flags
+
+NFTokenMintトランザクションで指定可能なフラグとして以下のものがあります。
+これらのフラグは設定しないことも、複数指定することも可能です。
+
+- `tfBurnable`(1): 発行者がNFTをバーンできるように設定します。
+- `tfOnlyXRP`(2): NFTの取引にXRPのみを使用できるように設定します。
+- `tfTransferable`(8): NFTの二次流通を可能にします。このフラグが設定されている場合のみロイヤリティの設定が可能です。
+
+二次流通可能なNFTを作成してみましょう。
+
+<NFTMint/ >

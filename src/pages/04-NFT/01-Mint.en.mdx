@@ -1,0 +1,29 @@
+import { NFTMint } from 'src/components/NFT/NFTokenMint'
+import { LinkCard } from 'src/components/commons'
+
+# Mint NFT
+
+On this page, learn how to mint a NFT!
+You can mint the NFT by using the NFTokenMint transaction.
+
+<LinkCard href='https://xrpl.org/nftokenmint.html' />
+
+The following fields can be specified in an NFTokenMint transaction:
+
+- `NFTokenTaxon`: (required) A number to identify the collection, with a value of 0~4294967295 (0xFFFFFFFFFFFF).
+- `Flags`: The type of NFT can be specified. Details are described below.
+- `TransferFee`: Specify the fee (royalty) for secondary sales. 0~50000 values can be specified, corresponding to 0.00%~50.00%.
+- `URL`: Arbitrary data can be stored up to 256 bytes, specified as a hexadecimal value.
+
+#### Flags
+
+The following flags can be specified in an NFTokenMint transaction.
+These flags may be omitted or multiple flags may be specified.
+
+- `tfBurnable`(1): Allows NFT burn by the issuer.
+- `tfOnlyXRP`(2): Allows only XRP to trade in this NFT.
+- `tfTransferable`(8): Allows secondary sales of this NFT. Royalties can only be set if this flag is set.
+
+Let's create a secondary tradable NFT.
+
+<NFTMint/ >

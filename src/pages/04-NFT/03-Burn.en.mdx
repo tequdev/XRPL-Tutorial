@@ -1,0 +1,25 @@
+import { NFTBurn } from 'src/components/NFT/NFTokenBurn'
+import { AccountNfts } from 'src/components/NFT/AccountNfts'
+import { LinkCard } from 'src/components/commons'
+
+# Burn NFT
+
+On this page, learn how to Burn NFT!
+You can burn NFs by using the NFTokenBurn transaction.
+
+<LinkCard href='https://xrpl.org/nftokenburn.html' />
+
+The following fields can be specified in an NFTokenBurn transaction:
+
+- `NFTokenID`: (Required) Specify the ID of the NFT to be burned.
+- `Owner`: Specifies the current NFT owner account when burning a `tfBurnable` NFT issued by yourself.
+
+Try to burn your own NFT.
+
+First, get NFTs held by yourself.
+
+<AccountNfts/ >
+
+Choose one NFT and burn it by specifying its NFT ID.
+
+<NFTBurn/ >

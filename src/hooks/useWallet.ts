@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { WalletContext } from '@/context/WalletContext'
 
 export const useWallet = () => {
-  const { account, createWallet, loading } = useContext(WalletContext)
+  const { account, account2, createWallet, loading } = useContext(WalletContext)
 
-  return { account, createWallet, loading }
+  return { account, account2, createWallet, loading }
 }
