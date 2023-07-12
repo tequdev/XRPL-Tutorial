@@ -1,6 +1,6 @@
 import { useTheme } from 'nextra-theme-docs'
 
 export const useDarkMode = () => {
-  const { theme } = useTheme()
-  return theme === 'dark'
+  const { theme, systemTheme } = useTheme()
+  return (theme === 'system' ? systemTheme : theme) === 'dark'
 }
