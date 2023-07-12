@@ -1,4 +1,5 @@
-import useSWR, { Fetcher } from 'swr'
+import { Fetcher } from 'swr'
+import useSWRImmutable from 'swr/immutable'
 
 type Meta = {
   url: string
@@ -22,7 +23,7 @@ const fetcher: Fetcher<Meta, string> = async (url) => {
 }
 
 export const LinkCard: React.FC<P> = ({ href, children }) => {
-  const { data: target, error, isLoading } = useSWR(`/api/linkmeta?${new URLSearchParams({ href })}`, fetcher)
+  const { data: target, error, isLoading } = useSWRImmutable(`/api/linkmeta?${new URLSearchParams({ href })}`, fetcher)
 
   if (target) {
     return (
