@@ -9,7 +9,7 @@ import { useXrplClient } from '@/hooks/useXrplClient'
 const translations = {
   CreateAccount: {
     ja: 'アカウントの作成',
-    en: 'Transaction failed.',
+    en: 'Create Account',
   },
   CreateNFTOffer: {
     ja: 'NFT・オファーの作成',
