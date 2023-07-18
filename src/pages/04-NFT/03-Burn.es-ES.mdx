@@ -1,3 +1,25 @@
-import Burn from './03-Burn.en.mdx'
+import { NFTBurn } from 'src/components/NFT/NFTokenBurn'
+import { AccountNfts } from 'src/components/NFT/AccountNfts'
+import { LinkCard } from 'src/components/commons'
 
-<Burn/>
+# Quemar NFT
+
+¡En esta página, aprende como Quemar un NFT!
+Puedes quemar NFTs usando la transacción NFTokenBurn.
+
+<LinkCard href='https://xrpl.org/nftokenburn.html' />
+
+Los siguientes campos pueden ser especificados en una transacción NFTokenBurn:
+
+- `NFTokenID`: (Requerido) Especifica el ID del NFT a quemar.
+- `Owner`: Especifica el dueño actual del NFT cuando quemas un NFT `tfBurnable` emitido por ti mismo.
+
+Intenta quemar tu propio NFT.
+
+Primero, localiza los NFTs de los que eres dueño.
+
+<AccountNfts/ >
+
+Elige un NFT y quémalo especificando el ID del NFT.
+
+<NFTBurn/ >
