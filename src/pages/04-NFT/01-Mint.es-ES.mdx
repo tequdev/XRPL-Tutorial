@@ -1,3 +1,29 @@
-import Mint from './01-Mint.en.mdx'
+import { NFTMint } from 'src/components/NFT/NFTokenMint'
+import { LinkCard } from 'src/components/commons'
 
-<Mint/>
+# Acuñar NFT
+
+¡En esta página, aprende como acuñar un NFT!
+Puedes acuñar el NFT usando la transacción NFTokenMint.
+
+<LinkCard href='https://xrpl.org/nftokenmint.html' />
+
+Los siguientes campos pueden ser especificados para una transacción NFTokenMint:
+
+- `NFTokenTaxon`: (obligatorio) Un número que identifica a la colección, con un valor comprendido entre 0~4294967295 (0xFFFFFFFFFFFF).
+- `Flags`: El tipo de NFT puede ser especificado. Los detalles son descritos más abajo.
+- `TransferFee`: Especifica la comisión (regalía) para las ventas secundarias. El valor puede ser especificado entre 0~50000, que corresponde al 0.00%~50.00%.
+- `URL`: Información arbitraria puede ser guardada en hasta 256 bytes, especificada en valor hexadecimal.
+
+#### Banderas (Flags)
+
+Las siguientes banderas pueden ser especificadas en una transacción de tipo NFTokenMint.
+Estas banderas pueden ser omitidas o múltiples pueden ser especificadas.
+
+- `tfBurnable`(1): Permite quemar el NFT por el emisor (issuer).
+- `tfOnlyXRP`(2): Solo permite utilizar XRP para intercambiar este NFT.
+- `tfTransferable`(8): Permite la venta secundaria de este NFT. Las regalias solo son implementadas si esta bandera está activa.
+
+Vamos a crear un NFT intercambiable en el mercado secundario.
+
+<NFTMint/ >
