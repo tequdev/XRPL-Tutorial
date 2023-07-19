@@ -1,3 +1,76 @@
-import Trade from './02-Trade.en.mdx'
+import { NFTOfferCreate } from 'src/components/NFT/NFTokenCreateOffer'
+import { AccountNfts } from 'src/components/NFT/AccountNfts'
+import { SetupNFTOffer } from 'src/components/NFT/SetupNFTOffer'
+import { NFTSellOffers } from 'src/components/NFT/NFTSellOffers'
+import { NFTOfferAccept } from 'src/components/NFT/NFTokenAcceptOffer'
+import { LinkCard } from 'src/components/commons'
 
-<Trade/>
+# Comerciar NFT
+
+¡En esta página, aprende como comerciar con NFTs!
+Puedes crear la transacción NFTokenCreateOffer y la transacción NFTokenAcceptOffer para comerciar con NFTs.
+
+<LinkCard href='https://xrpl.org/nftokencreateoffer.html' />
+
+<LinkCard href='https://xrpl.org/nftokenacceptoffer.html' />
+
+La transacción NFTokenCreateOffer crea una orden para comprar o vender un NFT.
+
+La transacción NFTokenAcceptOffer acepta una orden compra o de venta que ha sido creada anteriormente por otra cuenta y completa el trato con el NFT.。
+
+### Transacción NFTokenCreateOffer
+
+Los siguientes campos pueden ser especificados en una transacción NFTokenCreateOffer:
+
+- `NFTokenID`: Especifica el ID del NFT.
+- `Owner`: Especifica la dirección del dueño del NFT. Especificar solo en caso de oferta de compra.
+- `Amount`: Especifica la cantidad por la que deseas comprar o vender el NFT; si el valor 0 es especificado, se considera una transferencia.
+- `Expiration`: Especifica la fecha hasta la que la oferta es válida.
+- `Destination`: ESpecifica la dirección del comprador o del vendedor. Solo la dirección especificada podrá aceptar la transacción.
+- `Flags`: Para crear una oferta de venta, especificar `tfSellNFToken`(1).
+
+Creemos una oferta de venta para un NFT que posees.
+
+Primero, localiza el NFT contenido en la cuenta.
+
+Puede ser obtenido con el comando `account_nfts`.
+
+<AccountNfts/ >
+
+Elige un NFT y crea una oferta de venta especificando el ID del NFT.
+
+<NFTOfferCreate/ >
+
+### Transacción NFTokenAcceptOffer
+
+nota: El modo Broker no está cubierto aquí. Por favor, acude a la documentación para el modo Broker.
+
+Los siguientes campos pueden ser especificados en la transacción NFTokenAcceptOffer:
+
+- `NFTokenSellOffer`: Al aprobar una oferta de venta, es decir, cuando una cuenta compra los NFTs de otras cuentas, especifica el ID de la oferta de venta.
+- `NFTokenBuyOffer`: Al aprobar una oferta de compra, es decir, cuando una cuenta vende sus propios NFTs, especifica el ID de la oferta de compra.
+
+Prueba la transacción NFTokenAcceptOffer.
+
+#### Crear un NFT y generar una oferta de venta como prueba
+
+Primero, creamos un NFT para aprobar y generar una oferta de venta en una cuenta separada.
+
+<SetupNFTOffer/ >
+
+#### Conseguir el ID de la Oferta
+
+Siguiente, vamos a conseguir el ID de la oferta del NFT que hemos creado.
+
+Puedes utilizar el comando nft_sell_offers para conseguir las ofertas de venta para un ID de NFT dado.
+
+De forma similar, el comando nft_buy_offers existe para recibir las ofertas de compra, pero no lo utilizaremos en este ejemplo.
+
+<NFTSellOffers/ >
+
+
+#### Crear transacción NFTokenAcceptOffer
+
+Vamos a crear una transacción NFTokenAcceptOffer usando la información obtenida de la oferta NFT.
+
+<NFTOfferAccept/ >

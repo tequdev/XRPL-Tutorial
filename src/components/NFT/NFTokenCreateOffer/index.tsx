@@ -9,7 +9,7 @@ const translations = {
   Invalid_Flags: {
     ja: 'フラグが間違っています。',
     en: 'Invalid flags.',
-    'es-ES': 'Bandeira incorrecta.',
+    'es-ES': 'Banderas incorrectas.',
   },
   TransactionFailed: {
     ja: 'トランザクションが失敗しました。',

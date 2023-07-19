@@ -10,10 +10,12 @@ const translations = {
   CreateAccount: {
     ja: 'アカウントの作成',
     en: 'Create Account',
+    'es-ES': 'Crear Cuenta.',
   },
   CreateNFTOffer: {
     ja: 'NFT・オファーの作成',
     en: 'Create NFT Offer',
+    'es-ES': 'Crear Oferta NFT.',
   },
 } as const
 
