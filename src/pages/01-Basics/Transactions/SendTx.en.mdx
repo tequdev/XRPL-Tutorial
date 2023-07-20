@@ -21,11 +21,59 @@ Finally use `Submit` button to submit the transaction.
 
 <SendTransaction/ >
 
-## Example
+## Example1
 
 import { Tab, Tabs } from 'nextra-theme-docs'
 
-<Tabs items={['javascript', 'typescript']}>
+<Tabs items={['CommonJS', 'ESModule']}>
+  <Tab>
+
+```js copy
+const { Client, Wallet } = require('xrpl')
+
+const client = new Client('wss://testnet.xrpl-labs.com')
+const wallet = Wallet.fromSeed('<seed>')
+
+const txn = {
+  TransactionType: 'AccountSet',
+  Account: 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59',
+}
+
+client.connect().then(() => {
+  client.autofill(txn).then((txn) => {
+    const { tx_blob } = wallet.sign(txn)
+    client.submit(tx_blob)
+  })
+})
+```
+
+  </Tab>
+  <Tab>
+
+```ts copy
+import { Client, Wallet } from 'xrpl'
+
+const client = new Client('wss://testnet.xrpl-labs.com')
+const wallet = Wallet.fromSeed('<seed>')
+let txn = {
+  TransactionType: 'AccountSet',
+  Account: 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59',
+}
+await client.connect()
+
+txn = await client.autofill(txn)
+const { tx_blob } = wallet.sign(txn)
+
+await client.submit(tx_blob)
+```
+
+  </Tab>
+</Tabs>
+
+
+## Example2
+
+<Tabs items={['CommonJS', 'ESModule']}>
   <Tab>
 
 ```js copy
@@ -36,7 +84,7 @@ const wallet = Wallet.fromSeed('<seed>')
 
 client.connect().then(() => {
   client
-    .submitAndWait(
+    .submitAndWait( // autofill, sign, submit, wait
       {
         TransactionType: 'AccountSet',
         Account: 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59',
@@ -53,12 +101,13 @@ client.connect().then(() => {
   <Tab>
 
 ```ts copy
-import { Client } from 'xrpl'
+import { Client, Wallet } from 'xrpl'
 
 const client = new Client('wss://testnet.xrpl-labs.com')
 const wallet = Wallet.fromSeed('<seed>')
 
 await client.connect()
+// autofill, sign, submit, wait
 const response = await client.submitAndWait(
   {
     TransactionType: 'AccountSet',
